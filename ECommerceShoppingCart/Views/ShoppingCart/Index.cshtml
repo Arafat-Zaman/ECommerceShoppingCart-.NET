@@ -1,0 +1,26 @@
+﻿@model ECommerceShoppingCart.Models.ShoppingCart
+
+<h1>Your Shopping Cart</h1>
+
+<ul>
+    @foreach (var product in Model.Products)
+    {
+        <li>@product.Name - @product.Price</li>
+    }
+</ul>
+
+<p>Total: @Model.GetTotalPrice()</p>
+
+<form method="post" action="/ShoppingCart/AddProduct">
+    <input type="hidden" name="productId" value="1" />
+    <button type="submit">Add Product</button>
+</form>
+
+<form method="post" action="/ShoppingCart/Checkout">
+    <select name="paymentType">
+        <option value="CreditCard">Credit Card</option>
+        <option value="PayPal">PayPal</option>
+        <option value="GiftCard">Gift Card</option>
+    </select>
+    <button type="submit">Checkout</button>
+</form>
